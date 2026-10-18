@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aura Cafe — Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <h1>Aura Cafe</h1>
+        <span>Order ahead · ready in 12–15 min</span>
+      </div>
+    </div>
+    <button class="cart-toggle" id="cartToggleBtn" aria-label="Open order summary">
+      <span>Your order</span>
+      <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="page">
+
+  <section class="hero">
+    <div class="hero-glow">
+      <p class="eyebrow-line">Corner of 5th &amp; Linden</p>
+      <h1 class="display">Slow mornings deserve a good pour.</h1>
+      <p class="lead">Small-batch coffee, loose-leaf tea, and pastries baked before sunrise. Pick what you're craving and we'll have it waiting at the counter.</p>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Open today</strong> · 7:00 AM – 6:00 PM</div>
+      <div><strong>Pickup only</strong> · no delivery fees</div>
+      <div><strong>Today's roast</strong> · Ethiopia Guji, floral</div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+<section id="menu" class="section">
+  <div class="container">
+    <p class="eyebrow reveal">Full Menu</p>
+    <h2 class="display-2 reveal">Something For Every Hour</h2>
+    <div class="menu-filters" id="menuFilters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="espresso">Espresso</button>
+      <button class="filter-btn" data-cat="latte">Latte</button>
+      <button class="filter-btn" data-cat="cappuccino">Cappuccino</button>
+      <button class="filter-btn" data-cat="cold">Cold Coffee</button>
+      <button class="filter-btn" data-cat="tea">Tea</button>
+      <button class="filter-btn" data-cat="pastries">Pastries</button>
+    </div>
+    <div class="menu-grid" id="menuGrid">
+      <!-- Espresso -->
+      <div class="menu-item show" data-cat="espresso"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/5e/94/e3/5e94e3f26af639379cba028d99bed2fc.jpg" alt="Classic Espresso"></div><div class="menu-info"><h4>Classic Espresso</h4><p>Single origin, dense crema</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="espresso"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/0e/48/20/0e48204e637cc1baeb61c15ac00c4df8.jpg" alt="Classic Doppio"></div><div class="menu-info"><h4>Doppio</h4><p>Double shot, concentrated</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="espresso"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/0e/c1/0c/0ec10cee8bae54d2657722b7ad0ae948.jpg" alt="Espresso Macchiato"></div><div class="menu-info"><h4>Espresso Macchiato</h4><p>Marked with a spoon of foam</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+ 
+      <!-- Latte -->
+      <div class="menu-item show" data-cat="latte"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/0a/34/4c/0a344cfabbe54777fb3b1ff22405507c.jpg" alt="Signature Latte"></div><div class="menu-info"><h4>Signature Latte</h4><p>Espresso, silked milk, caramel</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="latte"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/ee/c7/47/eec747ea34ad9a90bdd652abb64f3c2d.jpg" alt="Vanilla Latte"></div><div class="menu-info"><h4>Vanilla Latte</h4><p>House vanilla, oat or dairy</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="latte"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/7b/1f/59/7b1f59a525dfc09bd3339ca75bfaf239.jpg" alt="Honey Lavender Latte"></div><div class="menu-info"><h4>Honey Lavender Latte</h4><p>Local honey, dried lavender</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+
+      <!-- Cappuccino -->
+      <div class="menu-item show" data-cat="cappuccino"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/f0/65/5f/f0655f2737da76be9b4ac435c65e3d9b.jpg" alt="Classic Cappuccino"></div><div class="menu-info"><h4>Classic Cappuccino</h4><p>Equal parts espresso, milk, foam</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="cappuccino"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/8a/5c/9f/8a5c9ffd9cba59eea78a5a4dfb33d52b.jpg" alt="Cinnamon Cappuccino"></div><div class="menu-info"><h4>Cinnamon Cappuccino</h4><p>Dusted Ceylon cinnamon</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="cappuccino"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/10/69/ed/1069ed1a351ae1e43232e85f496c43b9.jpg" alt="Wet Cappuccino"></div><div class="menu-info"><h4>Wet Cappuccino</h4><p>Extra steamed milk, light foam</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+
+      <!-- Cold Coffee -->
+      <div class="menu-item show" data-cat="cold"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/b4/51/ac/b451ac5d50191191dfe550cc1c6d39e4.jpg" alt="Cold Brew"></div><div class="menu-info"><h4>Cold Brew</h4><p>18-hour steeped, smooth</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="cold"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/7f/c4/bb/7fc4bbba81e207b269066fdeeb881b58.jpg" alt="Iced Caramel Latte"></div><div class="menu-info"><h4>Iced Caramel Latte</h4><p>Layered over ice, caramel drizzle</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="cold"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/71/12/4d/71124ddb2bd0bb329f522533615df9b2.jpg" alt="Nitro Cold Brew"></div><div class="menu-info"><h4>Nitro Cold Brew</h4><p>Nitrogen-infused, cascading foam</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+
+      <!-- Tea -->
+      <div class="menu-item show" data-cat="tea"><div class="menu-thumb"><img src="https://i.pinimg.com/736x/a5/53/b6/a553b6ddfd36aaf45182d2805a36dc77.jpg" alt="Jasmine Green Tea"></div><div class="menu-info"><h4>Jasmine Green Tea</h4><p>Whole-leaf, lightly floral</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="tea"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/67/ad/bb/67adbb90ece2d75852568c8127f17b65.jpg" alt="Spiced Chai Latte"></div><div class="menu-info"><h4>Spiced Chai Latte</h4><p>House-steeped spice blend</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="tea"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/a2/a2/b9/a2a2b9de05e6d45d5251bce51765dfba.jpg" alt="Chamomile Bloom"></div><div class="menu-info"><h4>Chamomile Bloom</h4><p>Caffeine-free, calming</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+
+      <!-- Pastries -->
+      <div class="menu-item show" data-cat="pastries"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/71/40/53/714053a0ecadf3d37a0603e11e1bc464.jpg" alt="Butter Croissant"></div><div class="menu-info"><h4>Butter Croissant</h4><p>Laminated, baked fresh daily</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="pastries"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/a3/c7/30/a3c73078fb109c700c7d927352dbd88a.jpg" alt="Banana Walnut Loaf"></div><div class="menu-info"><h4>Banana Walnut Loaf</h4><p>Moist, toasted walnuts</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+      <div class="menu-item show" data-cat="pastries"><div class="menu-thumb"><img src="https://i.pinimg.com/1200x/cf/9b/af/cf9bafa8f904bb4c2aacf06cebf46331.jpg" alt="Almond Croissant"></div><div class="menu-info"><h4>Almond Croissant</h4><p>Frangipane, sliced almonds</p></div><div class="menu-side"><span class="menu-price">$2.50</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"><span class="dot">●</span><span id="toastText">Added to your order</span></div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="glow-ring"></div>
+    <h2>Order placed</h2>
+    <p>Your order <span class="order-num" id="orderNum">#A-104</span> is being made.</p>
+    <p>We'll have it ready at the counter in about 12–15 minutes.</p>
+    <button id="modalCloseBtn">Back to menu</button>
+  </div>
+</div>
+
+<script src="scrip1.js"></script>
+
+</body>
+</html>
