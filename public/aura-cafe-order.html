@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="order.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#home">
+      
+      <h1>AURA COFFEE</h1><span>Order ahead · ready in 12–15 min</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#home" class="active">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-toggle" id="cartToggleBtn" aria-label="Open order summary">
+      <span>Your order</span><span class="count" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Toggle navigation">☰</button>
+  </div>
+</header>
+
+<main class="page">
+  <section id="home" class="hero">
+    <div>
+      <p class="eyebrow">Corner of 5th &amp; Linden</p>
+      <h1>Slow mornings deserve a good pour.</h1>
+      <p class="lead">Small-batch coffee, loose-leaf tea, and pastries baked before sunrise. Pick what you're craving and we'll have it waiting at the counter.</p>
+      <div class="cta">
+        <a class="btn" href="#menu">Order now</a>
+        <a class="btn ghost" href="#about">Our story</a>
+      </div>
+    </div>
+    <div class="info">
+      <div><strong>Open today</strong> · 7:00 AM – 6:00 PM</div>
+      <div><strong>Pickup only</strong> · no delivery fees</div>
+      <div><strong>Today's roast</strong> · Ethiopia Guji, floral</div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="main-grid">
+      <div>
+        <p class="eyebrow">Full menu</p>
+        <h2>Something for every hour</h2>
+        <p class="section-note" id="menuNote"></p>
+        <div class="tabs" id="tabs"></div>
+        <div id="menuContainer"></div>
+      </div>
+
+      <aside class="cart-panel" id="order">
+        <button class="cart-panel-close" id="cartPanelClose" aria-label="Close order panel"></button>
+        <h2>Your order</h2>
+        <p class="cart-sub">Pickup only · ready in 12–15 min</p>
+        <div id="cartBody"></div>
+        <form id="orderForm" hidden>
+          <div class="field"><label for="custName">Name for the order</label>
+            <input id="custName" required maxlength="40" placeholder="Your name" autocomplete="given-name"></div>
+          <div class="field"><label for="pickup">Pickup time</label>
+            <select id="pickup">
+              <option>As soon as possible (12–15 min)</option>
+              <option>In 30 minutes</option>
+              <option>In 1 hour</option>
+            </select></div>
+          <div class="field"><label for="orderNote">Note for the barista (optional)</label>
+            <textarea id="orderNote" placeholder="Oat milk only, extra hot, etc."></textarea></div>
+          <button class="place-order" id="placeOrderBtn" type="submit">Place order</button>
+          <button class="clear-btn" id="clearBtn" type="button">Clear order</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <p class="eyebrow">About</p>
+    <h2>Made slowly, served warmly</h2>
+    <div class="cols">
+      <div class="box"><h3>Small-batch roasts</h3><p>We rotate single-origin beans and brew each cup to order.</p></div>
+      <div class="box"><h3>Baked before sunrise</h3><p>Croissants and loaves come out of the oven before we open.</p></div>
+      <div class="box"><h3>Ready when you are</h3><p>Order ahead, choose a pickup time, and skip the line.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Come say hi</h2>
+    <div class="cols">
+      <div class="box"><h3>Find us</h3><p>Corner of 5th &amp; Linden</p></div>
+      <div class="box"><h3>Hours</h3><p>Every day, 7:00 AM – 6:00 PM</p></div>
+      <div class="box"><h3>Questions?</h3><p>Ask at the counter, or add a note to your order.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>© Aura Cafe · Pickup only</footer>
+
+<div class="toast" id="toast"><span class="dot">●</span><span id="toastText">Added to your order</span></div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="glow-ring"></div>
+    <h2>Order placed</h2>
+    <p>Your order <span class="order-num" id="orderNum">#A-104</span> is being made.</p>
+    <p id="modalMsg"></p>
+    <button id="modalCloseBtn">Back to menu</button>
+  </div>
+</div>
+
+<!-- MENU DATA: edit names, prices and images here. Keep it valid JSON (double quotes, no trailing comma). -->
+<script type="application/json" id="menuData">
+[
+  {"id": "classic-espresso", "cat": "Espresso", "icon": "☕", "name": "Classic Espresso", "desc": "Single origin, dense crema", "price": 3.0, "img": "https://i.pinimg.com/736x/5e/94/e3/5e94e3f26af639379cba028d99bed2fc.jpg"},
+  {"id": "doppio", "cat": "Espresso", "icon": "☕", "name": "Doppio", "desc": "Double shot, concentrated", "price": 3.75, "img": "https://i.pinimg.com/1200x/0e/48/20/0e48204e637cc1baeb61c15ac00c4df8.jpg"},
+  {"id": "espresso-macchiato", "cat": "Espresso", "icon": "☕", "name": "Espresso Macchiato", "desc": "Marked with a spoon of foam", "price": 3.25, "img": "https://i.pinimg.com/736x/0e/c1/0c/0ec10cee8bae54d2657722b7ad0ae948.jpg"},
+  {"id": "signature-latte", "cat": "Latte", "icon": "🥛", "name": "Signature Latte", "desc": "Espresso, silked milk, caramel", "price": 5.25, "img": "https://i.pinimg.com/736x/0a/34/4c/0a344cfabbe54777fb3b1ff22405507c.jpg"},
+  {"id": "vanilla-latte", "cat": "Latte", "icon": "🥛", "name": "Vanilla Latte", "desc": "House vanilla, oat or dairy", "price": 5.0, "img": "https://i.pinimg.com/736x/ee/c7/47/eec747ea34ad9a90bdd652abb64f3c2d.jpg"},
+  {"id": "honey-lavender-latte", "cat": "Latte", "icon": "🥛", "name": "Honey Lavender Latte", "desc": "Local honey, dried lavender", "price": 5.5, "img": "https://i.pinimg.com/1200x/7b/1f/59/7b1f59a525dfc09bd3339ca75bfaf239.jpg"},
+  {"id": "classic-cappuccino", "cat": "Cappuccino", "icon": "☕", "name": "Classic Cappuccino", "desc": "Equal parts espresso, milk, foam", "price": 4.5, "img": "https://i.pinimg.com/736x/f0/65/5f/f0655f2737da76be9b4ac435c65e3d9b.jpg"},
+  {"id": "cinnamon-cappuccino", "cat": "Cappuccino", "icon": "☕", "name": "Cinnamon Cappuccino", "desc": "Dusted Ceylon cinnamon", "price": 4.75, "img": "https://i.pinimg.com/1200x/8a/5c/9f/8a5c9ffd9cba59eea78a5a4dfb33d52b.jpg"},
+  {"id": "wet-cappuccino", "cat": "Cappuccino", "icon": "☕", "name": "Wet Cappuccino", "desc": "Extra steamed milk, light foam", "price": 4.5, "img": "https://i.pinimg.com/1200x/10/69/ed/1069ed1a351ae1e43232e85f496c43b9.jpg"},
+  {"id": "cold-brew", "cat": "Cold Coffee", "icon": "🧊", "name": "Cold Brew", "desc": "18-hour steeped, smooth", "price": 4.75, "img": "https://i.pinimg.com/1200x/b4/51/ac/b451ac5d50191191dfe550cc1c6d39e4.jpg"},
+  {"id": "iced-caramel-latte", "cat": "Cold Coffee", "icon": "🧊", "name": "Iced Caramel Latte", "desc": "Layered over ice, caramel drizzle", "price": 5.5, "img": "https://i.pinimg.com/736x/7f/c4/bb/7fc4bbba81e207b269066fdeeb881b58.jpg"},
+  {"id": "nitro-cold-brew", "cat": "Cold Coffee", "icon": "🧊", "name": "Nitro Cold Brew", "desc": "Nitrogen-infused, cascading foam", "price": 5.25, "img": "https://i.pinimg.com/736x/71/12/4d/71124ddb2bd0bb329f522533615df9b2.jpg"},
+  {"id": "jasmine-green-tea", "cat": "Tea", "icon": "🍵", "name": "Jasmine Green Tea", "desc": "Whole-leaf, lightly floral", "price": 4.0, "img": "https://i.pinimg.com/736x/a5/53/b6/a553b6ddfd36aaf45182d2805a36dc77.jpg"},
+  {"id": "spiced-chai-latte", "cat": "Tea", "icon": "🍵", "name": "Spiced Chai Latte", "desc": "House-steeped spice blend", "price": 4.75, "img": "https://i.pinimg.com/1200x/67/ad/bb/67adbb90ece2d75852568c8127f17b65.jpg"},
+  {"id": "chamomile-bloom", "cat": "Tea", "icon": "🍵", "name": "Chamomile Bloom", "desc": "Caffeine-free, calming", "price": 4.0, "img": "https://i.pinimg.com/1200x/a2/a2/b9/a2a2b9de05e6d45d5251bce51765dfba.jpg"},
+  {"id": "butter-croissant", "cat": "Pastries", "icon": "🥐", "name": "Butter Croissant", "desc": "Laminated, baked fresh daily", "price": 3.75, "img": "https://i.pinimg.com/1200x/71/40/53/714053a0ecadf3d37a0603e11e1bc464.jpg"},
+  {"id": "banana-walnut-loaf", "cat": "Pastries", "icon": "🥐", "name": "Banana Walnut Loaf", "desc": "Moist, toasted walnuts", "price": 4.0, "img": "https://i.pinimg.com/1200x/a3/c7/30/a3c73078fb109c700c7d927352dbd88a.jpg"},
+  {"id": "almond-croissant", "cat": "Pastries", "icon": "🥐", "name": "Almond Croissant", "desc": "Frangipane, sliced almonds", "price": 4.5, "img": "https://i.pinimg.com/1200x/cf/9b/af/cf9bafa8f904bb4c2aacf06cebf46331.jpg"}
+]
+</script>
+
+<script src="order.js"></script>
+</body>
+</html>

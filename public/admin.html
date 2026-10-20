@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aura — Orders</title>
+<style>body{font-family:system-ui,sans-serif;background:#faf4ea;color:#2a1b12;margin:0;padding:20px}h1{margin:0 0 16px}.o{background:#fff;border:1px solid #ddd;border-radius:12px;padding:14px;margin-bottom:12px}.o h3{margin:0 0 6px}.s{font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:99px;background:#eee}button{margin:8px 6px 0 0;padding:6px 12px;border:1px solid #8d3f0e;background:#fff;color:#8d3f0e;border-radius:8px;cursor:pointer}button.on{background:#8d3f0e;color:#fff}</style></head>
+<body><h1>Orders</h1><div id="list">Loading…</div>
+<script>
+let KEY = sessionStorage.getItem("k") || prompt("Admin key") || "";
+sessionStorage.setItem("k", KEY);
+const H = () => ({ "x-admin-key": KEY, "Content-Type": "application/json" });
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+async function load() {
+  const r = await fetch("/api/orders", { headers: H() });
+  if (!r.ok) { list.textContent = "Wrong key. Refresh and try again."; sessionStorage.removeItem("k"); return; }
+  const o = (await r.json()).reverse();
+  list.innerHTML = o.map(x => `<div class="o"><h3>#${esc(x.number)} · ${esc(x.name)} <span class="s">${x.status}</span></h3>
+    <div>${x.items.map(i => esc(i.qty + "× " + i.name)).join(", ")}</div>
+    <div>Total $${x.total.toFixed(2)} · ${esc(x.pickup)}</div>${x.note ? `<div>Note: ${esc(x.note)}</div>` : ""}
+    <div>${["New", "Making", "Ready", "Done"].map(s => `<button class="${s === x.status ? "on" : ""}" onclick="setS('${x.number}','${s}')">${s}</button>`).join("")}</div></div>`).join("") || "No orders yet.";
+}
+async function setS(n, s) { await fetch("/api/orders/" + n, { method: "PATCH", headers: H(), body: JSON.stringify({ status: s }) }); load(); }
+load(); setInterval(load, 10000);
+</script></body></html>
