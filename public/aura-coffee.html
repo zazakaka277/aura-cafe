@@ -27,6 +27,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
+    <a href="aura-cafe-order.html" class="btn btn-primary nav-order">Order Now</a> 
   </ul>
   <div class="nav-cta">
     <a href="aura-cafe-order.html" class="btn btn-primary magnetic">Order Now</a>
@@ -303,15 +304,18 @@
         <h5>Company</h5>
         <a href="#contact">Contact</a><a href="#home" aria-label="Privacy Policy">Privacy Policy</a><a href="#home" aria-label="Careers">Careers</a>
       </div>
+
       <div class="footer-col">
-        <h5>Stay In Touch</h5>
-        <p style="font-size:.85rem; opacity:.65; margin-bottom:.9rem;">Get coffee news & special offers.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Thank you!';">
-          <input type="email" placeholder="Your email" required aria-label="Email address">
-          <button class="btn btn-primary" type="submit" style="padding:.85rem 1.3rem;">Join</button>
-        </form>
-      </div>
-    </div>
+  <h5>Leave a Comment</h5>
+  <p style="font-size:.85rem; opacity:.65; margin-bottom:.9rem;">Tell us what you think.</p>
+  <form class="comment-form" id="commentForm">
+    <input type="text" name="name" placeholder="Your name" required maxlength="50" aria-label="Your name">
+    <textarea name="message" placeholder="Write your comment..." required maxlength="500" rows="3" aria-label="Comment"></textarea>
+    <button class="btn btn-primary" type="submit">Send</button>
+    <p id="commentStatus" style="font-size:.8rem;"></p>
+  </form>
+</div>
+
     <div class="footer-bottom">
       <p>© 2026 AURA COFFEE. All rights reserved.</p>
       <p>Roasted daily, served with soul.</p>
@@ -325,3 +329,4 @@
 
 </body>
 </html>
+ 

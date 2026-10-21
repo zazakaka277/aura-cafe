@@ -335,6 +335,27 @@ document.addEventListener('scroll', ()=>{
     renderer.render(scene, camera);
   }
   animate();
+  const commentForm = document.getElementById('commentForm');
+if (commentForm) {
+  commentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('commentStatus');
+    const name = commentForm.name.value.trim();
+    const message = commentForm.message.value.trim();
+    try {
+      const res = await fetch('/api/comments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, message })
+      });
+      if (!res.ok) throw new Error();
+      commentForm.reset();
+      status.textContent = 'Thank you for your comment!';
+    } catch {
+      status.textContent = 'Could not send. Please try again.';
+    }
+  });
+}
   
 })();
 

@@ -118,6 +118,7 @@ h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; line-height:1.05; 
 .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--gold-soft); transition:width .35s var(--ease);}
 .nav-links a:hover{opacity:1;}
 .nav-links a:hover::after{width:100%;}
+.nav-links a.nav-order{display:none;}
 .nav-cta{display:flex; align-items:center; gap:1.6rem;}
 .hamburger{display:none; flex-direction:column; gap:5px; width:26px; z-index:1001;}
 .hamburger span{height:1.5px; background:var(--cream); width:100%; transition:.35s var(--ease);}
@@ -773,6 +774,19 @@ a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var
   .nav-links{position:fixed; inset:0 0 0 30%; background:var(--espresso-deep); flex-direction:column; justify-content:center; align-items:flex-start; padding:2rem 2.5rem; gap:1.8rem; transform:translateX(100%); transition:transform .5s var(--ease); border-left:1px solid var(--glass-border);}
   .nav-links.open{transform:translateX(0);}
   .nav-links a{font-size:1.1rem; opacity:1;}
+
+  .nav-links a.nav-order{
+    display:flex;
+    width:100%;
+    margin-top:1.2rem;
+    padding:1rem 2.1rem;
+    font-size:.95rem;
+    color:var(--espresso-deep);
+  }
+
+  .nav-links a.nav-order::after{display:none;}
+  #nav.scrolled{backdrop-filter:none; background:rgba(18,11,6,.96);}
+
   .hamburger{display:flex;}
   .nav-cta .btn-primary{display:none;}
   .card-grid{grid-template-columns:1fr;}
@@ -788,3 +802,14 @@ a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
 }
+.comment-form{display:flex; flex-direction:column; gap:.6rem; margin-top:1rem;}
+.comment-form input,
+.comment-form textarea{
+  padding:.85rem 1.1rem; border-radius:16px; border:1px solid var(--glass-border);
+  background:var(--glass-fill); color:var(--cream); font-size:.85rem;
+  font-family:inherit; resize:vertical; min-width:0;
+}
+.comment-form input::placeholder,
+.comment-form textarea::placeholder{color:rgba(242,230,216,.4);}
+.comment-form input:focus,
+.comment-form textarea:focus{outline:2px solid var(--gold-soft); outline-offset:2px;}
