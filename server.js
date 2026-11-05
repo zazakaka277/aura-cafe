@@ -26,7 +26,7 @@ const app = express();
 app.use(express.json({ limit: "50kb" }));
 
 // Only public/ is served, so orders.json and server.js stay private
-app.use(express.static(PUBLIC));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const needKey = (req, res, next) =>
   req.get("x-admin-key") === ADMIN_KEY ? next() : res.status(401).json({ error: "Unauthorized" });
@@ -63,7 +63,14 @@ app.post("/api/orders", (req, res) => {
 });
 
 // Staff: list orders and change status
-app.get("/api/orders", needKey, (req, res) => res.json(read(ORDERS)));
+app.get('/', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, 'public', 'index.html')
+    );
+});
+
+module.exports = app;
+
 app.patch("/api/orders/:number", needKey, (req, res) => {
   const orders = read(ORDERS);
   const o = orders.find((x) => x.number === req.params.number);
@@ -74,7 +81,6 @@ app.patch("/api/orders/:number", needKey, (req, res) => {
   res.json(o);
 });
 
-app.listen(PORT, () => {
-  console.log("Aura Cafe running at http://localhost:" + PORT);
-  if (!process.env.ADMIN_KEY) console.log("Warning: using the default admin key. Set ADMIN_KEY before going live.");
-});
+if (require.main === module) {
+  app.listen(3000, () => console.log('Running on 3000'));
+};
